@@ -129,14 +129,16 @@ header .navbar {
 }
 
 #hero h2 {
-    font-size: clamp(40px, 8vw, 80px);
-    color: var(--primary-color) !important;
+    font-size: 64px;
+    color: #007BFF;
+    font-weight:800;
 }
 
 #hero h3 {
     font-size: clamp(40px, 8vw, 60px);
     /* color: var(--primary-color) !important; */
-    opacity: 0.5;
+    color:#000000;
+    font-weight: 600;
 }
 
 #hero p {
