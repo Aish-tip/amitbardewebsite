@@ -1,0 +1,74 @@
+footer a h5 {
+    color: var(--text-color) !important;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--text-secondary-color) !important;
+}
+
+footer a:hover {
+  color: var(--primary-color) !important;
+}
+
+footer .card {
+    background-color: var(--secondary-color) !important;
+    border-radius: .75rem;
+    cursor: context-menu;
+    overflow: hidden;
+}
+
+footer .card:hover {
+    transition: all 0.3s ease-out;
+    box-shadow: 0px 8px 56px rgba(15, 80, 100, 0.16);
+}
+
+footer .card-text * {
+    background-color: var(--secondary-color) !important;
+}
+
+footer .card-footer {
+    background-color: var(--background-color) !important;
+    padding: .8em .7em;
+}
+
+footer .card-footer a {
+    color: var(--text-secondary-color) !important;
+    border-color: var(--primary-color) !important;
+    transition: none;
+    background-color: var(--background-color) !important;
+}
+
+footer .card-footer a:hover {
+    color: var(--primary-color) !important;
+    opacity: 0.8;
+}
+
+footer .card-footer a:focus {
+    box-shadow: none !important;
+}
+footer a.btn.social-icon {
+    color: #007BFF !important;
+    line-height: 0%;
+    border-radius: 50%;
+    margin-top: 0px;
+    padding: 0.7rem;
+    border: 1px solid #007BFF;
+    transition: none;
+}
+
+footer a.btn.social-icon img {
+    width: 1em;
+}
+
+footer a.btn.social-icon:hover {
+    opacity: 0.7;
+}
+hr{
+    border-top: 2px solid #007BFF;
+    margin: 1% 5%;
+}
+footer .social-media-div{
+    width: 100%;
+    margin-left:5%;
+}

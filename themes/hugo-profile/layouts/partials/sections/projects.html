@@ -1,0 +1,162 @@
+{{ if .Site.Params.projects.enable | default false }}
+<section id="projects" class="py-5">
+    <div class="container">
+        <h3 class="text-center">Portfolio</h3>
+        <div id="myBtnContainer">
+            <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+            <button class="btn" onclick="filterSelection('sound')"> Sound Design</button>
+            <button class="btn" onclick="filterSelection('music')"> Music</button>
+            
+        </div>
+        <div class="row">
+            <div class="column sound music">
+              <div class="content">
+                <iframe src="https://player.vimeo.com/video/630391415?h=405e7d79bb" width="400" height="300" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <!-- <p><a href="https://vimeo.com/630391415">LightSense Virtual</a> from <a href="https://vimeo.com/amitbarde">Amit Barde</a></p> -->
+              </div>
+            </div>
+            <div class="column sound">
+              <div class="content">
+                <iframe src="https://player.vimeo.com/video/200508248?h=24477f27b7" width="400" height="300" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <!-- <p><a href="https://vimeo.com/200508248">Short Film: Just Boldo..I&#039;m Sorry</a> from <a href="https://vimeo.com/amitbarde">Amit Barde</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
+              </div>
+            </div>
+            <div class="column music">
+              <div class="content">
+                <iframe src="https://player.vimeo.com/video/62241505?h=3a58b8ed5a" width="400" height="300" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                <!-- <p><a href="https://vimeo.com/62241505">Music: Zubaani</a> from <a href="https://vimeo.com/amitbarde">Amit Barde</a> on <a href="https://vimeo.com">Vimeo</a>.</p> -->
+              </div>
+            </div>
+            
+            
+          <!-- END GRID -->
+          </div>
+
+    </div>
+</section>
+{{ end }}
+
+
+
+<script>
+    filterSelection("all")
+    function filterSelection(c) {
+      var x, i;
+      x = document.getElementsByClassName("column");
+      if (c == "all") c = "";
+      for (i = 0; i < x.length; i++) {
+        w3RemoveClass(x[i], "show");
+        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+      }
+    }
+    
+    function w3AddClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+      }
+    }
+    
+    function w3RemoveClass(element, name) {
+      var i, arr1, arr2;
+      arr1 = element.className.split(" ");
+      arr2 = name.split(" ");
+      for (i = 0; i < arr2.length; i++) {
+        while (arr1.indexOf(arr2[i]) > -1) {
+          arr1.splice(arr1.indexOf(arr2[i]), 1);     
+        }
+      }
+      element.className = arr1.join(" ");
+    }
+    
+    
+    // Add active class to the current button (highlight it)
+    var btnContainer = document.getElementById("myBtnContainer");
+    var btns = btnContainer.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function(){
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+    </script>
+
+<!-- <div class="row justify-content-center px-3 px-md-5">
+    {{ range .Site.Params.projects.items }}
+    <div class="col-lg-4 col-md-6 my-3">
+        <div class="card my-3 h-100" title="{{ .title }}">
+            <div class="card-head">
+                <img class="card-img-top" src="{{ .image }}" alt="{{ .title }}">
+            </div>
+            <div class="card-body bg-transparent p-3">
+                <div class="pb-2 bg-transparent">
+                    {{ range .badges }}
+                    <span class="badge badge-secondary">{{ . }}</span>
+                    {{ end }}
+                </div>
+                <h5 class="card-title bg-transparent mt-1">{{ .title }}</h5>
+                <div class="card-text bg-transparent secondary-font">
+                    {{ .content }}
+                </div>
+            </div>
+            {{ if or (.links) (.featured) }}
+            <div class="card-footer py-3">
+                {{ range .links }}
+                <span class="m-1 mx-2">
+                    <a href="{{ .url }}" target="_blank">
+                        <i class="{{ .icon }}"></i>
+                    </a>
+                </span>
+                {{ end }}
+                {{ if .featured }}
+                <span class="float-end">
+                    <a class="btn btn-sm" href="{{ .featured.link }}" target="_blank">
+                        {{ .featured.name }}
+                    </a>
+                </span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+    {{ range ( where .Site.RegularPages "Type" "projects" ) }}
+    {{ if .Params.showInHome | default true }}
+    <div class="col-lg-4 col-md-6 my-3">
+        <div class="card my-3 h-100" title="{{ .Title }}">
+            <div class="card-head">
+                <img class="card-img-top" src="{{ .Params.image }}" alt="{{ .Title }}">
+            </div>
+            <div class="card-body bg-transparent p-3">
+                <div class="pb-2 bg-transparent">
+                    {{ range .Params.badges }}
+                    <span class="badge badge-secondary">{{ . }}</span>
+                    {{ end }}
+                </div>
+                <h5 class="card-title bg-transparent">{{ .Title | truncate 50 }}</h5>
+                <div class="card-text bg-transparent secondary-font">
+                    {{ .Summary | truncate 100 | safeHTML }}
+                </div>
+            </div>
+            <div class="card-footer py-3">
+                {{ range .Params.links }}
+                <span class="m-1 mx-2">
+                    <a href="{{ .url }}">
+                        <i class="{{ .icon }}"></i>
+                    </a>
+                </span>
+                {{ end }}
+                <span class="float-end">
+                    <a class="btn btn-sm" href="{{ .RelPermalink }}">
+                        Know more
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    {{ end }}
+    {{ end }}
+</div> -->
